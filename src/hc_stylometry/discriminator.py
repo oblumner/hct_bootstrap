@@ -271,8 +271,10 @@ def analyze_and_display(
     
     bootstrap_hc_scores = results_dict.get("bootstrap_hc_scores")
     if bootstrap_hc_scores and len(bootstrap_hc_scores) > 0:
-        avg_bootstrap_hc_score = np.mean(bootstrap_hc_scores)
-        print(f"\nAverage HC Score over {n_iterations} Bootstrap Iterations: {avg_bootstrap_hc_score:.4f}")
+        #avg_bootstrap_hc_score = np.mean(bootstrap_hc_scores)
+        #print(f"\nAverage HC Score over {n_iterations} Bootstrap Iterations: {avg_bootstrap_hc_score:.4f}")
+        std_bootstrap_hc_score = np.std(bootstrap_hc_scores)
+        print(f"\nStandard Deviation of Bootstrap HC Scores: {std_bootstrap_hc_score:.4f}")
     else:
         print("\nBootstrap HC scores not available or empty, cannot calculate average.")
     
