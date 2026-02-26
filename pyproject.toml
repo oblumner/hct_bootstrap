@@ -16,7 +16,6 @@ maintainers = [
 description = "A package using the Higher Criticism statistic to find discriminating words in two texts." 
 readme = "README.md"
 
-#license = ""
 license = { file = "LICENSE" }
 
 classifiers = [
@@ -39,9 +38,8 @@ dependencies = [
 
 [project.optional-dependencies]
 display = ["ipython", "matplotlib", "seaborn"]
-#Users who want the enhanced display can then install your package with the extra: 
-#pip install hc_stylometry[display]
+#For enhanced display: pip install hc_stylometry[display]
 
 [project.urls]
-#add github when ready
+#https://github.com/oblumner/hct_bootstrap
 
