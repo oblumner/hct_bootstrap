@@ -1,4 +1,4 @@
-# HC-Stylometry: Discriminating Words in Text Corpora
+# HCT-Bootstrap: Discriminating Words in Text Corpora
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-380/)
 [![License: Unlicensed](https://img.shields.io/badge/License-Unlicensed-lightgrey.svg)](https://choosealicense.com/no-permission/)
@@ -46,7 +46,7 @@ https://arxiv.org/pdf/math/0410072
 Here is a simple example of how to use the `analyze_and_display` function to compare two lists of documents and generate a full report.
 
 ```python
-from hc_stylometry import analyze_and_display
+from hct_bootstrap import analyze_and_display
 
 # 1. Prepare your two text corpora as lists of strings
 
