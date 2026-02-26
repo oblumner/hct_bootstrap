@@ -113,6 +113,7 @@ Bootstrap Iterations: 1000
 # of words in AI: 260,000
 
 --- Higher Criticism Results (Analysis on Full Text) ---
+```
 | word | p_value | human_frequency | AI_frequency | more_frequent_in
 | ---: | ---: | ---: | ---: | ---: |
 | nuance | 3.98703e-271 | 0.0 | 0.384792 | AI |
@@ -125,6 +126,7 @@ Bootstrap Iterations: 1000
 | meticulous | 3.98703e-271 | 0.0 | 0.384792 | AI |
 | underscore | 3.98703e-271 | 0.0 | 0.384792 | AI |
 | realm | 3.98703e-271 | 0.0 | 0.384792 | AI |
+```text
 (showing top 10 of 17 discriminating words from full data run)
 
 Overall HC Score (Full Data): 4.6882
