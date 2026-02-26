@@ -114,7 +114,7 @@ Bootstrap Iterations: 1000
 
 --- Higher Criticism Results (Analysis on Full Text) ---
 ```
-| word | p_value | human_frequency | AI_frequency | more_frequent_in
+| word | p_value | human_frequency (%) | AI_frequency (%) | more_frequent_in
 | ---: | ---: | ---: | ---: | ---: |
 | nuance | 3.98703e-271 | 0.0 | 0.384792 | AI |
 | crucial | 3.98703e-271 | 0.0 | 0.384792 | AI |
@@ -134,6 +134,7 @@ Overall HC Score (Full Data): 4.6882
 --- Stable Words Found in 100% of Bootstrap Iterations ---
 
 Words more frequent in 'Human':
+None
 
 Words more frequent in 'AI':
 meticulous, underscore, nuance, realm, robust, crucial, delve, tapestry, leverage
