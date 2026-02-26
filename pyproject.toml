@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hct_bootstrap"
-version = "0.1.0"
+version = "0.1.1"
 requires-python = ">=3.8"
 authors = [
   {name = "Ophira Blumner", email = "ophirablumner@gmail.com" },
@@ -13,7 +13,7 @@ authors = [
 maintainers = [
     {name = "Ophira Blumner", email = "ophirablumner@gmail.com" }
 ]
-description = "A package using the Higher Criticism statistic to find discriminating words in two texts." 
+description = "A package using the Higher Criticism statistic to find discriminating words in two text corpora." 
 readme = "README.md"
 
 license = { file = "LICENSE" }

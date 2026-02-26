@@ -17,7 +17,7 @@ The core statistical engine of this package is the **Higher Criticism (HC)** tes
 
 In statistical terms, comparing two corpora involves thousands of individual hypothesis tests—one for each unique word. For each word, we can calculate a p-value that represents the probability of observing its frequency difference by pure chance. However, with thousands of tests, we expect many small p-values to occur randomly, a problem known as the **multiple testing problem**.
 
-Traditional methods like the Bonferroni correction are too conservative in this setting, as they often miss subtle but collectively significant signals. The Higher Criticism statistic, in contrast, is specifically designed to detect a **sparse, heterogeneous signal**. In the context of stylometry, this translates to the assumption that an author's or model's unique "style" is not defined by a change in every word, but by a small, unknown subset of words that they use idiosyncratically.
+Traditional methods like the Bonferroni correction are too conservative in this setting, as they often miss subtle but collectively significant signals. The Higher Criticism statistic, in contrast, is specifically designed to detect a **sparse, heterogeneous signal**. In our context, this translates to the assumption that an author's or model's unique "style" is not defined by a change in every word, but by a small, unknown subset of words that they use idiosyncratically.
 
 The HC statistic works by examining the ordered sequence of all p-values. It seeks the optimal threshold where the number of surprisingly small p-values is most significant relative to what would be expected under the null hypothesis (that there is no difference between the corpora). This makes it exceptionally well-suited for identifying a faint but consistent stylistic "fingerprint" that distinguishes two bodies of text. This package includes the method described in the aforementioned paper to apply this powerful statistical test to word-frequency tables derived from text. The core statistical code is taken from Alon Kipnis's `TwoSampleHC` GitHub repository.
 
@@ -35,10 +35,15 @@ https://arxiv.org/pdf/math/0410072
 
 1.  **Activate your virtual environment.** Make sure you have a Python 3.8+ environment ready and activated.
 
-2.  **Install from GitHub.** You can install the package directly from this GitHub repository.
+2.  **Install directly from PyPI:**
 
     ```bash
-    pip install "git+https://github.com/oblumner/higher-criticism-stylometry.git#egg=hc_stylometry[display]"
+    pip install hct-bootstrap
+    ```
+    Installation with display features: If you want to automatically generate the plotting in Jupyter Notebook, install the package with the optional display dependencies. 
+    
+    ```bash
+    pip install "hct-bootstrap[display]"
     ```
 
 ## Quick Start: How to Use the Code
