@@ -39,7 +39,7 @@ def load_custom_nlp(model_name: str) -> spacy.language.Language:
 
 def count_word_appearances(group_dfs: List[pd.DataFrame]) -> pd.DataFrame:
     """
-    Counts the number of DataFrames (experiments/iterations) each word appears in.
+    Counts the number of DataFrames (experiments) each word appears in.
     Args: group_dfs (List[pd.DataFrame]): A list of pandas DataFrames.  Each DataFrame
     is expected to have a 'word' column containing the discriminating words from one 
     experiment/bootstrap iteration.
