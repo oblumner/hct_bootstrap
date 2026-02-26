@@ -47,35 +47,52 @@ Here is a simple example of how to use the `analyze_and_display` function to com
 
 ```python
 from hct_bootstrap import analyze_and_display
+import random
 
-# 1. Prepare your two text corpora as lists of strings
+#Set random seed for reproducibility
+random.seed(42)
 
-corpus_A_docs = [
-    “… document 1 …”,
-    “… document 2 …,
-    “… document 3 …“
+background_vocab = [
+    "analysis", "system", "data", "model", "research", "method", "result", "time", "user", "network",
+    "process", "study", "group", "problem", "level", "information", "effect", "change", "design", "feature",
+    "performance", "approach", "case", "point", "development", "variable", "pattern", "value", "algorithm", "test",
+    "environment", "structure", "condition", "behavior", "factor", "application", "control", "theory", "practice", "solution",
+    "science", "technology", "paper", "review", "framework", "function", "state", "rule", "context", "form",
+    "concept", "equation", "experiment", "measure", "source", "type", "area", "base", "number", "size",
+    "quality", "property", "task", "technique", "principle", "resource", "material", "energy", "rate", "scale",
+    "phase", "stage", "component", "class", "architecture", "mechanism", "relation", "role", "impact", "access"
 ]
 
-corpus_B_docs = [
-    “… document 1 …”,
-    “… document 2 …,
-    “… document 3 …“,
-    “… document 4 …“,
-]
+ai_style_words = ["delve", "intricate", "underscore", "meticulous", "crucial", "tapestry", "robust", "realm", "nuance", "leverage"]
+
+human_corpus = []
+ai_corpus = []
+
+# 1.  Create 'human' corpus
+# Generate 1000 documents, each containing 250 random background words
+for _ in range(1000):
+    doc = " ".join(random.choices(background_vocab, k=250))
+    human_corpus.append(doc)
+    
+#2.  Create 'AI' corpus 
+# Generate 1000 documents of the same length, using the same background vocabulary, but also injecting our 'AI style words' into each document
+for _ in range(1000):
+    doc = " ".join(random.choices(background_vocab, k=250))
+    doc += " " + " ".join(ai_style_words)
+    ai_corpus.append(doc)
+
 
 # 2. Run the analysis and display the report
-
-# We set coupled=False because the lists are not paired one-to-one.  If, for example, you used a list of prompts to generate pairs of text using different LLMs, you would set coupled=True (the corpora would be of equal length).
-
-# The function will automatically load the default spaCy model.
+# We set coupled=False because the lists are not paired one-to-one.  If, for example, you used a list of prompts to generate pairs of text using different LLMs, you would set coupled=True (the corpora would be of equal length)
+# We use 1000 bootstrap iterations
 
 results = analyze_and_display(
-    corpus1_docs=corpus_A_docs,
-    corpus1_name=“Corpus A”,
-    corpus2_docs=corpus_B_docs,
-    corpus2_name=“Corpus B“,
-    coupled=False,
-    n_iterations=100  # number of bootstrap iterations
+    corpus1_docs=human_corpus, 
+    corpus1_name="Human",
+    corpus2_docs=ai_corpus, 
+    corpus2_name="AI",
+    coupled=False,        
+    n_iterations=1000     
 )
 
 ```
@@ -86,38 +103,43 @@ Running the code above will generate a report in your console or notebook simila
 
 ```text
 === Higher Criticism Analysis Report ===
-Comparing: 'Corpus A' vs. 'Corpus B'
+Comparing: 'Human' vs. 'AI'
 Coupled Analysis: False
-Bootstrap Iterations: 100
----
+Bootstrap Iterations: 1000
+--------------------------
 
  --- Corpus Information (Post-Cleaning) ---
-# of words in Corpus A: 10000
-# of words in Corpus B: 11000
+# of words in Human: 250,000
+# of words in AI: 260,000
 
 --- Higher Criticism Results (Analysis on Full Text) ---
-(A pandas DataFrame showing the first ten discriminating words, p-values, and frequencies is displayed here)
+| word | p_value | human_frequency | AI_frequency | more_frequent_in
+| ---: | ---: | ---: | ---: | ---: |
+| nuance | 3.98703e-271 | 0.0 | 0.384792 | AI |
+| crucial | 3.98703e-271 | 0.0 | 0.384792 | AI |
+| delve | 3.98703e-271 | 0.0 | 0.384792 | AI |
+| intricate | 3.98703e-271 | 0.0 | 0.384792 | AI |
+| leverage | 3.98703e-271 | 0.0 | 0.384792 | AI |
+| tapestry | 3.98703e-271 | 0.0 | 0.384792 | AI |
+| robust | 3.98703e-271 | 0.0 | 0.384792 | AI |
+| meticulous | 3.98703e-271 | 0.0 | 0.384792 | AI |
+| underscore | 3.98703e-271 | 0.0 | 0.384792 | AI |
+| realm | 3.98703e-271 | 0.0 | 0.384792 | AI |
+(showing top 10 of 17 discriminating words from full data run)
 
-Overall HC Score (Full Data): 24.831
+Overall HC Score (Full Data): 4.6882
 
 --- Stable Words Found in 100% of Bootstrap Iterations ---
 
-Words more frequent in Corpus A:
- - word_1
- - word_2
- - word_3
- - ...
+Words more frequent in 'Human':
 
-Words more frequent in Corpus B:
- - word_6
- - word_7
- - word_8
- - ...
+Words more frequent in 'AI':
+meticulous, underscore, nuance, realm, robust, crucial, delve, tapestry, leverage
 
 --- Histogram of Bootstrap Word Count Frequencies ---
 (A matplotlib histogram plot is displayed here)
 
-Average HC Score over 100 Bootstrap Iterations: 27.324
+Standard Deviation of Bootstrap HC scores: 0.0095
 
 === End of Report ===
 ```
